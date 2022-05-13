@@ -5,6 +5,7 @@ import Search from './Search';
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
+
   useEffect(() => {
     fetch(
       'https://react-hooks-update-60525-default-rtdb.firebaseio.com/ingredients.json'
@@ -21,7 +22,12 @@ function Ingredients() {
         }
         setUserIngredients(loadedIngredients);
       });
-  });
+  }, []);
+
+  const filteredIngredientHandler = (filteredIngredients) => {
+    setUserIngredients(filteredIngredients);
+  };
+
   const addIngredientHandler = (ingredient) => {
     fetch(
       'https://react-hooks-update-60525-default-rtdb.firebaseio.com/ingredients.json',
@@ -32,12 +38,12 @@ function Ingredients() {
       }
     )
       .then((response) => response.json())
-      .then((responseData) =>
+      .then((responseData) => {
         setUserIngredients((prevIngredients) => [
           ...prevIngredients,
           { id: responseData.name, ...ingredient },
-        ])
-      );
+        ]);
+      });
   };
   const removeIngredientHandler = (ingredientId) => {
     setUserIngredients((prevIngredients) =>
@@ -49,7 +55,7 @@ function Ingredients() {
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search />
+        <Search onLoadIngredients={filteredIngredientHandler} />
         <IngredientList
           ingredients={userIngredients}
           onRemoveItem={removeIngredientHandler}
