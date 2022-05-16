@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
+import React, { useEffect, useCallback, useReducer } from 'react';
 import IngredientList from './IngredientList';
 import IngredientForm from './IngredientForm';
 import Search from './Search';
@@ -26,7 +26,7 @@ const httpReducer = (curHttpState, action) => {
     case 'SEND':
       return { loading: true, error: null };
     case 'RESPONSE':
-      return { ...curHttpState, error: null };
+      return { ...curHttpState, loading: false };
     case 'ERROR':
       return { loading: false, error: action.errorMessage };
     default:
