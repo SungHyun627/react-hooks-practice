@@ -4,6 +4,7 @@ import useTitle from './useTitle';
 import useClick from './useClick';
 import useConfirm from './useConfirm';
 import usePreventLeave from './usePreventLeave';
+import useBeforeLeave from './useBeforeLeave';
 
 const contents = [
   {
@@ -40,6 +41,9 @@ const Main = () => {
 
   const { enablePrevent, disablePrevent } = usePreventLeave();
 
+  const beForeLeave = () => console.log("don't leave");
+  useBeforeLeave(beForeLeave);
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -59,6 +63,10 @@ const Main = () => {
       <div>
         <button onClick={enablePrevent}>Protect</button>
         <button onClick={disablePrevent}>UnProtect</button>
+      </div>
+
+      <div>
+        <h1>Hello</h1>
       </div>
     </div>
   );
