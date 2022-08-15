@@ -3,6 +3,7 @@ import useTabs from './useTabs';
 import useTitle from './useTitle';
 import useClick from './useClick';
 import useConfirm from './useConfirm';
+import usePreventLeave from './usePreventLeave';
 
 const contents = [
   {
@@ -37,6 +38,8 @@ const Main = () => {
   const abortHi = () => console.log('abort');
   const confirmDelete = useConfirm('Delete OK?', deleteHi, abortHi);
 
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -52,6 +55,11 @@ const Main = () => {
       <div>{currentItem.contentDetail}</div>
       <div ref={hi}>Hi</div>
       <button onClick={confirmDelete}>Hi World</button>
+
+      <div>
+        <button onClick={enablePrevent}>Protect</button>
+        <button onClick={disablePrevent}>UnProtect</button>
+      </div>
     </div>
   );
 };
