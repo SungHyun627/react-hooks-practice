@@ -1,6 +1,7 @@
 import useInput from './useInput';
 import useTabs from './useTabs';
 import useTitle from './useTitle';
+import useClick from './useClick';
 
 const contents = [
   {
@@ -22,10 +23,14 @@ const Main = () => {
   const name = useInput('Kim', maxLen);
 
   const { currentItem, changeItemIndexHandler } = useTabs(0, contents);
+
   const titleUpdater = useTitle('Loading');
   setTimeout(() => {
     titleUpdater('home');
   }, 2000);
+
+  const sayHi = () => console.log('hi');
+  const hi = useClick(sayHi);
 
   return (
     <div className="Main">
@@ -37,6 +42,7 @@ const Main = () => {
         </button>
       ))}
       <div>{currentItem.contentDetail}</div>
+      <div ref={hi}>Hi</div>
     </div>
   );
 };
