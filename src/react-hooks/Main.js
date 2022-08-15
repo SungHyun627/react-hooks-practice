@@ -25,7 +25,7 @@ const Main = () => {
   const titleUpdater = useTitle('Loading');
   setTimeout(() => {
     titleUpdater('home');
-  }, 5000);
+  }, 2000);
 
   return (
     <div className="Main">
