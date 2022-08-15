@@ -7,6 +7,7 @@ import usePreventLeave from './usePreventLeave';
 import useBeforeLeave from './useBeforeLeave';
 import useFadeIn from './useFadeIn';
 import useNetwork from './useNetwork';
+import useScroll from './useScroll';
 
 const contents = [
   {
@@ -53,6 +54,8 @@ const Main = () => {
   };
   const onLine = useNetwork(handleNetworkChange);
 
+  const { y } = useScroll();
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -83,6 +86,17 @@ const Main = () => {
       </div>
       <div>
         <h1>{onLine ? 'Online' : 'OffLine'}</h1>
+      </div>
+      <div style={{ height: '1000vh' }}>
+        <h1
+          style={{
+            color: y > 100 ? 'red' : 'blue',
+            position: 'fixed',
+            top: '8px',
+          }}
+        >
+          Hello
+        </h1>
       </div>
     </div>
   );
