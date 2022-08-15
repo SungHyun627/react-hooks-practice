@@ -5,6 +5,7 @@ import useClick from './useClick';
 import useConfirm from './useConfirm';
 import usePreventLeave from './usePreventLeave';
 import useBeforeLeave from './useBeforeLeave';
+import useFadeIn from './useFadeIn';
 
 const contents = [
   {
@@ -44,6 +45,8 @@ const Main = () => {
   const beForeLeave = () => console.log("don't leave");
   useBeforeLeave(beForeLeave);
 
+  const fadeInH1 = useFadeIn(3);
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -67,6 +70,10 @@ const Main = () => {
 
       <div>
         <h1>Hello</h1>
+      </div>
+
+      <div>
+        <h1 {...fadeInH1}>Fade In</h1>
       </div>
     </div>
   );
