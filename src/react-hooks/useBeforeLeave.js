@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-const useBeforeLeave = (onBeofre) => {
+const useBeforeLeave = (onBefore) => {
   const handle = (e) => {
     const { clientY } = e;
     if (clientY <= 0) {
-      onBeofre();
+      onBefore();
     }
   };
 
