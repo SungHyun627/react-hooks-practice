@@ -2,6 +2,7 @@ import useInput from './useInput';
 import useTabs from './useTabs';
 import useTitle from './useTitle';
 import useClick from './useClick';
+import useConfirm from './useConfirm';
 
 const contents = [
   {
@@ -32,17 +33,25 @@ const Main = () => {
   const sayHi = () => console.log('hi');
   const hi = useClick(sayHi);
 
+  const deleteHi = () => console.log('delete');
+  const abortHi = () => console.log('abort');
+  const confirmDelete = useConfirm('Delete OK?', deleteHi, abortHi);
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
       <input placeholder="name" {...name} />
-      {contents.map((content, idx) => (
-        <button onClick={() => changeItemIndexHandler(idx)}>
-          {content.contentDetail}
-        </button>
-      ))}
+      <div>
+        {contents.map((content, idx) => (
+          <button onClick={() => changeItemIndexHandler(idx)}>
+            {content.contentDetail}
+          </button>
+        ))}
+      </div>
+
       <div>{currentItem.contentDetail}</div>
       <div ref={hi}>Hi</div>
+      <button onClick={confirmDelete}>Hi World</button>
     </div>
   );
 };
