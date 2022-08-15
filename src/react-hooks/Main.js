@@ -6,6 +6,7 @@ import useConfirm from './useConfirm';
 import usePreventLeave from './usePreventLeave';
 import useBeforeLeave from './useBeforeLeave';
 import useFadeIn from './useFadeIn';
+import useNetwork from './useNetwork';
 
 const contents = [
   {
@@ -47,6 +48,11 @@ const Main = () => {
 
   const fadeInH1 = useFadeIn(3);
 
+  const handleNetworkChange = (online) => {
+    console.log(online ? 'Hi, Online' : 'Hi, OffLine');
+  };
+  const onLine = useNetwork(handleNetworkChange);
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -74,6 +80,9 @@ const Main = () => {
 
       <div>
         <h1 {...fadeInH1}>Fade In</h1>
+      </div>
+      <div>
+        <h1>{onLine ? 'Online' : 'OffLine'}</h1>
       </div>
     </div>
   );
