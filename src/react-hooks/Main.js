@@ -10,6 +10,7 @@ import useNetwork from './useNetwork';
 import useFullscrren from './useFullscreen';
 import memories from '../asset/memories.png';
 import useNotification from './useNotification';
+import useAxios from './useAxios';
 // import useScroll from './useScroll';
 
 const contents = [
@@ -65,6 +66,11 @@ const Main = () => {
   const { element, triggerFull, exitFull } = useFullscrren(onFull);
 
   const triggerNotification = useNotification('Hello', { body: 'nice' });
+
+  const { loading, data, error, refetch } = useAxios({
+    url: 'https://yts.mx/api/v2/list_movies.json',
+  });
+
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -103,6 +109,12 @@ const Main = () => {
 
       <div>
         <button onClick={triggerNotification}>Hello</button>
+      </div>
+
+      <div>
+        <h1>{data && data.status}</h1>
+        <h1>{loading && 'loading'}</h1>
+        <button onClick={refetch}>Refetch</button>
       </div>
     </div>
   );
