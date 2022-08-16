@@ -9,6 +9,7 @@ import useFadeIn from './useFadeIn';
 import useNetwork from './useNetwork';
 import useFullscrren from './useFullscreen';
 import memories from '../asset/memories.png';
+import useNotification from './useNotification';
 // import useScroll from './useScroll';
 
 const contents = [
@@ -63,6 +64,7 @@ const Main = () => {
   };
   const { element, triggerFull, exitFull } = useFullscrren(onFull);
 
+  const triggerNotification = useNotification('Hello', { body: 'nice' });
   return (
     <div className="Main">
       <h1>Use custom react hooks</h1>
@@ -91,12 +93,16 @@ const Main = () => {
         <h1>{onLine ? 'Online' : 'OffLine'}</h1>
       </div>
 
-      <div style={{ height: '1000vh' }}>
+      <div>
         <div ref={element}>
           <img src={memories} alt="memories" style={{ height: '200px' }} />
           <button onClick={exitFull}>Exit Fullscreen</button>
         </div>
         <button onClick={triggerFull}>Make Fullscreen</button>
+      </div>
+
+      <div>
+        <button onClick={triggerNotification}>Hello</button>
       </div>
     </div>
   );
